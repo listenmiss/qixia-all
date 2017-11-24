@@ -176,5 +176,8 @@
   <modules>
   	<module>qixia-database</module>
     <module>qixia-api</module>
+    <module>approval-database</module>
+    <module>approval-api</module>
+    <module>qixia-commons</module>
   </modules>
 </project>

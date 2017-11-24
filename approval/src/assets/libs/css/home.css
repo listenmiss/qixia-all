@@ -1,0 +1,404 @@
+* {box-sizing: border-box;}
+body{margin: 0;font-family: "Microsoft YaHei";}
+.container{
+    padding: 0 !important;
+
+    width: 100% !important;
+}
+form {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+}
+.logofont{
+    font-size: 26px;
+    color: #fefefe;
+    float: left;
+    height: 50px;
+    padding: 15px 20px;
+    line-height: 20px;
+}
+.navbar-inverse {
+    margin-bottom: 0;
+    background-color: #62a8d1;
+    border-bottom: 1px solid #62a8d1;
+}
+.navbar-inverse .navbar-brand .navbar-logo{
+    height: 28px;
+}
+.searchmargin{
+    margin-left:200px;
+}
+/*.d1 {background: #A3D0C3;}*/
+.searchinput{
+    width:200px;
+}
+.search button {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 42px;
+    height: 30px;
+    border: none;
+    background: #ccc;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+.search button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #555;
+}
+.rolespan{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #fefefe;
+    display: inline-block;
+}
+#set .setli{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.setspan{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #fefefe;
+    display: inline-block;
+    cursor: pointer;
+}
+.outbtn{
+    margin-left: 10px;
+    border-left:1px solid #fefefe;
+}
+.home{
+    padding-top: 50px;
+    margin:0;
+    width: 100%;
+    height: 100%;
+}
+.title{
+    height: 50px;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #cccccc;
+}
+.title i,.title span{
+    display: inline-block;
+    line-height: 50px;
+}
+.title i{
+    margin-left:20px;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.title span{
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    color: #555555;
+}
+.content{
+    padding:0 30px;
+
+}
+.tabletitle{
+    background-color: #f5f5f5;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+.tabletitle i,.tabletitle span{
+    display: inline-block;
+    line-height: 30px;
+    color: #62a8d1;
+}
+.fixed-table-header{
+    background-color: #6fb3e0;
+    color:#ffffff;
+}
+
+
+/***********addcustomer**************/
+.backbtn{
+    margin-left: 20px;
+    background-color: #62a8d1;
+    color: #f5f5f5;
+    border: 0;
+}
+.customtitle{
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    color: #555555;
+    margin-left: 11px;
+}
+.addForm{
+    height:auto;
+    margin:66px auto;
+    width: 700px;
+    position: relative;
+}
+.stepContentLogo{
+    width:680px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.left{
+    width:320px;
+    height:0;
+    position: relative;
+    display: inline-block;
+    border-bottom-left-radius:10px;
+    border-top-left-radius:10px;
+    border-top:40px solid #62a8d1;
+    border-right:40px solid #62a8d1;
+    border-bottom:40px solid #62a8d1;
+    border-left:40px solid #62a8d1;
+}
+.left::after{
+    content: '';
+    width:0px;
+    height:0px;
+    position: absolute;
+    top:-40px;
+    left:280px;
+    z-index: 20;
+    border-top:40px solid transparent;
+    border-right:40px solid transparent;
+    border-bottom:40px solid transparent;
+    border-left:40px solid #62a8d1;
+}
+.right{
+    width:320px;
+    height:0px;
+    position: relative;
+    display: inline-block;
+    border-bottom-right-radius:10px;
+    border-top-right-radius:10px;
+    border-top:40px solid #ccc;
+    border-right:40px solid #ccc;
+    border-bottom:40px solid #ccc;
+    border-left:40px solid transparent;
+}
+.leftupdate{
+    width:320px;
+    height:0;
+    position: relative;
+    display: inline-block;
+    border-bottom-left-radius:10px;
+    border-top-left-radius:10px;
+    border-top:40px solid #4aa154;
+    border-right:40px solid #4aa154;
+    border-bottom:40px solid #4aa154;
+    border-left:40px solid #4aa154;
+}
+.leftupdate::after{
+    content: '';
+    width:0px;
+    height:0px;
+    position: absolute;
+    top:-40px;
+    left:280px;
+    z-index: 20;
+    border-top:40px solid transparent;
+    border-right:40px solid transparent;
+    border-bottom:40px solid transparent;
+    border-left:40px solid #4aa154;
+}
+.rightupdate{
+    width:320px;
+    height:0px;
+    position: relative;
+    display: inline-block;
+    border-bottom-right-radius:10px;
+    border-top-right-radius:10px;
+    border-top:40px solid #62a8d1;
+    border-right:40px solid #62a8d1;
+    border-bottom:40px solid #62a8d1;
+    border-left:40px solid transparent;
+}
+#leftdiv span{
+    position: absolute;
+    left:60px;
+    top:-10px;
+    color: #f5f5f5;
+    font-size:16px;
+}
+#rightdiv  span{
+    position: absolute;
+    right:80px;
+    top:-10px;
+    color: #f5f5f5;
+    font-size:16px;
+}
+.remind{
+    color: #dc6566;
+    font-family: "Microsoft YaHei";
+    font-size:12px;
+    margin-top:9px;
+    padding-left: 120px;
+    margin-bottom:81px;
+}
+.stepContent{
+    width:520px;
+    margin-left:auto;
+    margin-right:auto;
+}
+ol,ul{
+    list-style: none;
+}
+li{
+    line-height:20px;
+}
+.stepContent>li,.secondStepContent>li{
+    margin-bottom:20px;
+}
+.stepinput{
+    width:321px;
+    height:31px;
+    border: 1px solid #d5d5d5;
+}
+.stepContent>li span{
+    padding-right:32px;
+}
+.provinceSelect,.citySelect,.zeroSelect{
+    width:98px;
+    height:31px;
+    border: 1px solid #d5d5d5;
+    margin-right: 13px;
+}
+.citySelect{
+    margin-right: 6px;
+}
+.nextbtn{
+    text-align: center;
+    margin-top: 69px;
+}
+.nextbtn button{
+    background-color: #62a8d1;
+    width:100px;
+}
+
+.remindnext{
+    color: #dc6566;
+    font-family: "Microsoft YaHei";
+    font-size:12px;
+    margin-top:9px;
+    text-align: right;
+    padding-right: 160px;
+    margin-bottom:81px;
+}
+.secondStepContent{
+    width:520px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.secondStepContent>li>span{
+    padding-right:9px;
+}
+
+.uploader{
+    position:relative;
+    display:inline-block;
+    overflow:hidden;
+    cursor:default;
+    padding:0;
+    -moz-box-shadow:0px 0px 5px #ddd;
+    -webkit-box-shadow:0px 0px 5px #ddd;
+    box-shadow:0px 0px 5px #ddd;
+
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+
+.filename{
+    float:left;
+    display:inline-block;
+    outline:0 none;
+    height:32px;
+    width:240px;
+    margin:0;
+    padding:8px 10px;
+    overflow:hidden;
+    cursor:default;
+    border:1px solid;
+    border-right:0;
+    font:9pt/100% Arial, Helvetica, sans-serif; color:#777;
+    text-shadow:1px 1px 0px #fff;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    -moz-border-radius:5px 0px 0px 5px;
+    -webkit-border-radius:5px 0px 0px 5px;
+    border-radius:5px 0px 0px 5px;
+
+    background:#f5f5f5;
+    background:-moz-linear-gradient(top, #fafafa 0%, #eee 100%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#f5f5f5));
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#f5f5f5',GradientType=0);
+    border-color:#ccc;
+
+    -moz-box-shadow:0px 0px 1px #fff inset;
+    -webkit-box-shadow:0px 0px 1px #fff inset;
+    box-shadow:0px 0px 1px #fff inset;
+
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.uploadbutton{
+    float:left;
+    height:32px;
+    display:inline-block;
+    outline:0 none;
+    padding:8px 12px;
+    margin:0;
+    cursor:pointer;
+    border:1px solid;
+    font:bold 9pt/100% Arial, Helvetica, sans-serif;
+
+    -moz-border-radius:0px 5px 5px 0px;
+    -webkit-border-radius:0px 5px 5px 0px;
+    border-radius:0px 5px 5px 0px;
+
+    -moz-box-shadow:0px 0px 1px #fff inset;
+    -webkit-box-shadow:0px 0px 1px #fff inset;
+    box-shadow:0px 0px 1px #fff inset;
+}
+
+
+.uploader input[type=file]{
+    position:absolute;
+    top:0; right:0; bottom:0;
+    border:0;
+    padding:0; margin:0;
+    height:30px;
+    width:310px;
+    cursor:pointer;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity: 0;
+    opacity:0;
+}
+.blue .uploadbutton{
+    color:#fff;
+    text-shadow:1px 1px 0px #09365f;
+    background:#62a8d1;
+    border-color:#62a8d1;
+}
+.uploadname{
+    display: inline-block;
+    position: relative;
+    top: -10px;
+}
+.addbtnul{
+    width:300px;
+    margin:20px auto 30px;
+}
+.addbtn{
+    text-align: right;
+}
+#finishStep{
+    background-color: #dc6566;
+    width:100px;
+}

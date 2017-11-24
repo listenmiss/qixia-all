@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.com.catcher.vision.qixia</groupId>
+    <artifactId>qixia-all</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>cn.com.catcher.vision.qixia</groupId>
+  <artifactId>approval-api</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>approval-api Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+	<approval-database.version>0.0.1-SNAPSHOT</approval-database.version>
+	<qixia-commons.version>0.0.1-SNAPSHOT</qixia-commons.version>
+  </properties>
+  
+  <dependencies>
+
+    <dependency>
+    	<groupId>cn.com.catcher.vision.qixia</groupId>
+    	<artifactId>approval-database</artifactId>
+    	<version>${approval-database.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>cn.com.catcher.vision.qixia</groupId>
+    	<artifactId>qixia-commons</artifactId>
+    	<version>${qixia-commons.version}</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+    <finalName>approval-api</finalName>
+  </build>
+</project>
