@@ -54,14 +54,14 @@ public class ResponseUtil {
 	public static String unKonwException(){
 		CommonResponse res = new CommonResponse();
 		res.setCode(Constant.RESCODE_EXCEPTION);
-		res.setMsg("请稍后再�?");
+		res.setMsg("请稍后再�?");
 		return general(res);
 	}
 	
 	
 
 	/**
-	 * 自定�?
+	 * 自定�?
 	 * @param code
 	 * @param msg
 	 * @return
@@ -75,13 +75,13 @@ public class ResponseUtil {
 	
 	
 	/**
-	 * 用户未登�?
+	 * 用户未登�?
 	 * @return
 	 */
 	public static String noLogin() {
 		CommonResponse res = new CommonResponse();
 		res.setCode(Constant.RESCODE_NOLOGIN);
-		res.setMsg("用户未登�?");
+		res.setMsg("用户未登录");
 		
 		return general(res);
 	}
@@ -99,7 +99,7 @@ public class ResponseUtil {
 	
 	
 	/**
-	 * 无操作权�?
+	 * 无操作权�?
 	 * @return
 	 */
 	public static String noAuth() {

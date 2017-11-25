@@ -36,19 +36,19 @@ public class UserController {
         return this.userService.findUserList();
     }
     
-    @RequestMapping(path = {"addUser"}, method = {RequestMethod.GET})
-    public String addUser(HttpSession session, @RequestParam String name, @RequestParam String password,
-            @RequestParam int age) {
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
-        user.setAge(age);
-        int retResult = this.userService.addUser(user);
-        
-        String result = " add success";
-        if(retResult == 0) {
-            result = "fail";
-        }
-        return result;
-    }
+//    @RequestMapping(path = {"addUser"}, method = {RequestMethod.GET})
+//    public String addUser(HttpSession session, @RequestParam String name, @RequestParam String password,
+//            @RequestParam int age) {
+//        User user = new User();
+//        user.setName(name);
+//        user.setPassword(password);
+//        user.setAge(age);
+//        int retResult = this.userService.addUser(user);
+//        
+//        String result = " add success";
+//        if(retResult == 0) {
+//            result = "fail";
+//        }
+//        return result;
+//    }
 }

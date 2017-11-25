@@ -14,6 +14,8 @@
 
     <typeAliases>
         <typeAlias alias="User" type="cn.com.catcher.vision.gov.qixia.approval.model.User"/>
+        <typeAlias alias="MatterStats" type="cn.com.catcher.vision.gov.qixia.approval.model.MatterStats"/>
+        
     </typeAliases>
     <!-- 如果选择了“自动扫描mapping.xml文件”，则不需要配置mappers -->
     <!-- 

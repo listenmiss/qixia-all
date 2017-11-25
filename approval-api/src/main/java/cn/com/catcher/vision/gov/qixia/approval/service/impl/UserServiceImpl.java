@@ -47,20 +47,20 @@ public class UserServiceImpl implements UserService {
         return this.userDao.delUser(id);
     }
 
-	@Override
-	public User checkLogin(String uname, String pwd) {
-		// TODO Auto-generated method stub
-		User u = userDao.findUserByName(uname);
-		if(u==null)
-		{
-			return null;
-		}
-		else if(!pwd.equals(u.getPassword()))
-		{
-			return null;
-		}
-		return u;
-	}
+//	@Override
+//	public User checkLogin(String uname, String pwd) {
+//		// TODO Auto-generated method stub
+//		User u = userDao.findUserByName(uname);
+//		if(u==null)
+//		{
+//			return null;
+//		}
+//		else if(!pwd.equals(u.getPassword()))
+//		{
+//			return null;
+//		}
+//		return u;
+//	}
 
 
 }

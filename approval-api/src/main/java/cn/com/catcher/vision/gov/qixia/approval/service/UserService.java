@@ -18,5 +18,5 @@ public interface UserService {
 
     public int delUser(@Param("id") int id);
     
-    public User checkLogin(String uname,String pwd);
+//    public User checkLogin(String uname,String pwd);
 }

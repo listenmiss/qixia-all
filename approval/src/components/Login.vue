@@ -6,7 +6,7 @@
         <div><img src="../assets/images/login/logo.png" height="68" width="65"/></div>
         <!--<div><img src="../img/title.png" height="44" width="300"/></div>-->
         <div class="login_title">
-          <h3><span style="color: #f4bd83;">栖霞掌上社区业务审批平台</span></h3>
+          <h4><span style="color: #f4bd83;">栖霞掌上社区业务审批平台</span></h4>
         </div>
         <div class="form-wrapper">
           <div class="linker">
@@ -17,10 +17,10 @@
             <span class="ring"></span>
           </div>
           <form class="login-form" action="#" method="post">
-            <input type="text" name="username" placeholder="账号" />
-            <input type="password" name="password" placeholder="密码" />
+            <input type="text" name="username" placeholder="账号"  v-model="uname"/>
+            <input type="password" name="password" placeholder="密码" v-model="pwd"/>
             <div class="checkbox">
-              <input type="checkbox" id="checkbox_a2" class="chk_1" /><label for="checkbox_a2"></label>
+              <input type="checkbox" id="checkbox_a2" class="chk_1" v-model="chk"/><label for="checkbox_a2"></label>
               <span class="checkboxlabel">记住密码</span>
             </div>
             <button type="button" name="submit"   @click='login'>登  录</button>
@@ -33,12 +33,37 @@
 </template>
 
 <script>
+  import {mapState,mapGetters,mapActions} from 'vuex'
   export default {
     name: 'Login',
     data () {
       return {
-        msg: '这是登陆界面'
+        uname:'',
+        pwd: '',
+        chk:false
       }
+    },
+    methods:mapActions([
+      'saveToken'
+    ]) , mounted() {
+      const that = this
+
+        return (() => {
+
+          var cc=""
+          var name ="u_pwd=";
+          var ca = document.cookie.split(';');
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) != -1)
+              cc = c.substring(name.length, c.length);
+          }
+
+          that.pwd = cc;
+
+        })()
+
     },
     methods:{
       login()
@@ -53,7 +78,50 @@
 //// 命名的路由
 //        this.$router.push({ name: 'home', params: { userId: wise }})
 
-        this.$router.push({ path: '/main' })
+        if(this.chk)
+        {
+          var d = new Date();
+          d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+          var expires = "expires=" + d.toUTCString();
+          document.cookie = 'u_pwd' + "=" + this.pwd + "; " + expires;
+        }
+
+        var url ="/approval-api/authenticate/checkLogin";
+        var params={};
+        params.uname=this.uname;
+        params.pwd=this.pwd;
+        var that = this;
+
+
+        this.$axios.post(url,params)
+          .then(function (response) {
+
+            if(response.data.code==1000)
+            {
+
+
+              var token = response.data.data.token;
+              var refreshToken = response.data.data.refreshToken;
+              that.$store.dispatch("saveToken",token);
+              that.$store.dispatch("saveRefreshToken",refreshToken);
+              that.$router.push({ path: '/main' });
+
+            }else {
+              that.$message({
+                message: '用户名或密码错误，请重新输入！',
+                type: 'warning'
+              });
+            }
+            console.log(response);
+          })
+          .catch(function (error) {
+            that.$message({
+              message: '用户名或密码错误，请重新输入！',
+              type: 'warning'
+            });
+          });
+
+//
       }
     }
   }

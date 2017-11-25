@@ -18,7 +18,7 @@ public interface UserDao {
 
     public int delUser(@Param("id") int id);
     
-    public User findUserByName(@Param("name") String name);
+//    public User findUserByName(@Param("name") String name);
     
 
 }
