@@ -3,9 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xsi:schemaLocation="
-    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
    
     <!-- 扫描 -->
     <context:component-scan base-package="cn.com.catcher.vision.gov.qixia.approval.controller" />
@@ -15,15 +15,23 @@
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
-<!--     <mvc:cors>
-        <mvc:mapping path="/**" 
-        allowed-origins="*" 
-        allow-credentials="true"
-         max-age="1800" 
-         allowed-methods="GET,POST,PUT,DELETE,OPTIONS"/>
-    </mvc:cors> -->
     
+    <!-- 注意这里不能用，即使@CrossOrigin也不行，因为会后面的拦截器先执行 -->
+<!-- <mvc:cors>  
+    <mvc:mapping path="/**"
+        allowed-origins="*"
+        max-age="3600" 
+        allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
+        allowed-headers="Content-Type,Access-Control-Allow-Headers,Authorization,X-Requested-With"
+        allow-credentials="true" />
+</mvc:cors> -->
+
     <mvc:interceptors>
+    	<mvc:interceptor>
+	      <mvc:mapping path="/**"/>
+	      <bean class="cn.com.catcher.vision.gov.qixia.commons.interceptor.CorsInterceptor"/>
+	    </mvc:interceptor>
+	    
 	    <mvc:interceptor>
 	      <mvc:mapping path="/**"/>
 	      <mvc:exclude-mapping path="/authenticate/**" />
@@ -98,6 +106,5 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
     </bean>
-
 
 </beans>

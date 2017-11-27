@@ -54,9 +54,6 @@ public class TokenValidateInterceptor implements HandlerInterceptor {
 		// 验证JWT的签名，返回CheckResult对象
 		CheckResult checkResult = JwtUtil.validateJWT(tokenStr);
 		if (checkResult.isSuccess()) {
-			Claims claims = checkResult.getClaims();
-			logger.info("token校检通过checkResult�?"+JSONObject.fromObject(checkResult).toString());
-			logger.info("token校检通过user�?"+JSONObject.fromObject(claims.getSubject()).toString());
 			return true;
 		} else {
 			switch (checkResult.getErrCode()) {
@@ -79,7 +76,6 @@ public class TokenValidateInterceptor implements HandlerInterceptor {
 			}
 			return false;
 		}
-		
     }
 
     @Override

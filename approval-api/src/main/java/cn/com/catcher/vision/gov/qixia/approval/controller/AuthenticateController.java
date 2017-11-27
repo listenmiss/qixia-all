@@ -16,7 +16,7 @@ import cn.com.catcher.vision.gov.qixia.commons.utils.ResponseUtil;
 import io.jsonwebtoken.Claims;
 import net.sf.json.JSONObject;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/authenticate")
 public class AuthenticateController {

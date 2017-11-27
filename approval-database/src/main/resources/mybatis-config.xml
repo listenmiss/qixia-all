@@ -15,6 +15,10 @@
     <typeAliases>
         <typeAlias alias="User" type="cn.com.catcher.vision.gov.qixia.approval.model.User"/>
         <typeAlias alias="MatterStats" type="cn.com.catcher.vision.gov.qixia.approval.model.MatterStats"/>
+        <typeAlias alias="ManagerItem" type="cn.com.catcher.vision.gov.qixia.approval.model.ManagerItem"/>
+        <typeAlias alias="Item" type="cn.com.catcher.vision.gov.qixia.approval.model.Item"/>
+         <typeAlias alias="Department" type="cn.com.catcher.vision.gov.qixia.approval.model.Department"/>
+        
         
     </typeAliases>
     <!-- 如果选择了“自动扫描mapping.xml文件”，则不需要配置mappers -->

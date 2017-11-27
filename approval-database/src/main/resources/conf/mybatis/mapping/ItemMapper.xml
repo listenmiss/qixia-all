@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间: 对应接口的包名+接口名 -->
+<mapper namespace="cn.com.catcher.vision.gov.qixia.approval.dao.ItemDao">
+  <resultMap id="BaseResultMap" type="Item" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="depart_id" property="depart_id" jdbcType="INTEGER" />    
+    <result column="item_name" property="item_name" jdbcType="VARCHAR" />
+    <result column="item_state" property="item_state" jdbcType="INTEGER" />
+    <result column="item_type1" property="item_type1" jdbcType="INTEGER" />
+    <result column="item_type2" property="item_type2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="departmentResultMap" type="Department">  
+	<id column="did" jdbcType="INTEGER" property="id" />
+	<id column="depart_name" jdbcType="VARCHAR" property="depart_name" />
+  </resultMap>
+  
+  <resultMap id="SupperResultMap" type="Item" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="depart_id" property="depart_id" jdbcType="INTEGER" />    
+    <result column="item_name" property="item_name" jdbcType="VARCHAR" />
+    <result column="item_state" property="item_state" jdbcType="INTEGER" />
+    <result column="item_type1" property="item_type1" jdbcType="INTEGER" />
+    <result column="item_type2" property="item_type2" jdbcType="VARCHAR" />
+    
+    
+    <association property="department" resultMap="departmentResultMap"/>
+  </resultMap>
+   
+  <!-- 通过Id查找 -->
+  <select id="findItemById" parameterType="int" resultMap="SupperResultMap">
+    SELECT
+	i.*, d.id AS did,
+	d.depart_name
+	FROM
+		approvel_item AS i
+	LEFT JOIN approvel_depart AS d ON i.depart_id = d.id
+	  where i.id=#{id} 
+limit 1
+  </select>
+   
+  
+</mapper>

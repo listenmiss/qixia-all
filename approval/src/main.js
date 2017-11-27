@@ -7,12 +7,32 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store/index.js'
 
-import axios from 'axios'
+import axios from './util/axios_conf'
 
-axios.defaults.baseURL = "http://localhost:8080";
-Vue.prototype.$axios = axios
+import * as custom from './filters/customFilters'
+
+
+Object.keys(custom).forEach(key => {
+  Vue.filter(key, custom[key])
+})
+
+Vue.prototype.axios = axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+
+
+router.beforeEach((to, from, next) => {
+  let token = window.sessionStorage.getItem('token');
+  if(to.fullPath!="/"&&  (!token || token === null))
+  {
+    next('/')
+  }else
+  {
+    next();
+  }
+
+});
+
 
 /* eslint-disable no-new */
 new Vue({

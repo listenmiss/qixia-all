@@ -6,9 +6,9 @@
     </div>
     <div class="aside_left_menu" v-bind:style="{ height: screenHeight-180 + 'px' }">
 
-      <ul style="width:100%;padding:0px;">
-        <li class="aside_left_li_active"><span style="font-size:14px;">申请人姓名</span></li>
-        <li class="aside_left_li_normal"><span style="font-size:14px;">申请人姓名</span></li>
+      <ul style="width:100%;padding:0px;" v-for="(item,index) in customers">
+        <li class="aside_left_li_normal"  v-bind:class="{ aside_left_li_active: selectedIndex === index }" @click="changeItem(index,item)"><span style="font-size:14px;">{{item.user.nickname}}</span></li>
+        <!--<li class="aside_left_li_normal"><span style="font-size:14px;">申请人姓名</span></li>-->
       </ul>
     </div>
   </div>
@@ -22,7 +22,9 @@
     props: ['screenHeight'],
     data () {
       return {
-
+        selectedIndex:0,
+        customers:[],
+        selectedCustomer:null
       }
     },
     computed:mapGetters([
@@ -32,16 +34,24 @@
     created: function () {
       //  alert(this.token);
 //      alert(this.refreshToken);
+
       var url ="/approval-api/stats/findMatterStatsByInsertStart";
       var params={};
       params.insert_start=1;
       var that = this;
-      this.$axios.get(url,{
+      this.axios.get(url,{
         params: params
       })
         .then(function (response) {
 
-          console.log(response);
+//          if(response.data!=null &&response.data.customers!=null)
+//          {
+            that.customers  = response.data;
+            that.selectedCustomer = that.customers[0];
+            that.$store.dispatch("setCurStats",that.customers[0]);
+//          }
+
+          console.log(response.data);
         })
         .catch(function (error) {
 //          that.$message({
@@ -49,6 +59,12 @@
 //            type: 'warning'
 //          });
         });
+    },	methods: {
+      changeItem(index,item){
+        this.selectedCustomer =item;
+        this.selectedIndex = index;
+        this.$store.dispatch("setCurStats",item);
+      }
     }
   }
 </script>
@@ -66,7 +82,12 @@
   }
 
   .aside_left_li_active{
-    height:58px;line-height: 58px;background-color: #eeeeee;color: #ed9100;
+    height:58px;line-height: 58px;
+    background-color:#dcdcdc;
+    color: #ed9100;
+    /*border-top:1px solid #ed9100;*/
+    /*border-bottom:1px solid #ed9100;*/
+    /*border:1px solid #ed9100;*/
   }
 
   .aside_left_li_normal{

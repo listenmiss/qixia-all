@@ -6,20 +6,15 @@ import types from '../types.js'
 
  const state={
    count:6,
-   token:"",
-   refreshToken:""
+   userInfo:null
  }
 
 var getters={
 	count(state){
 		return state.count;
 	},
-  token(state){
-    return state.token;
-  }
-  ,
-  refreshToken(state){
-    return state.refreshToken;
+  userInfo(state){
+    return state.userInfo;
   }
 }
 
@@ -32,14 +27,9 @@ const actions = {
 			commit(types.DECREMENT);
 		}
 	},
-  saveToken({commit,state},token){
+  saveUserInfo({commit,state},userInfo){
 
-      commit(types.SAVETOKEN,token);
-
-  },
-  saveRefreshToken({commit,state},refresh){
-
-    commit(types.SAVEREFRESHTOKEN,refresh);
+      commit(types.SAVEUSERINFO,userInfo);
 
   }
 }
@@ -52,11 +42,8 @@ const mutations={
 		state.count--;
 	}
   ,
-  [types.SAVETOKEN](state,token){
-    state.token=token;
-  },
-  [types.SAVEREFRESHTOKEN](state,refreshToken){
-    state.refreshToken=refreshToken;
+  [types.SAVEUSERINFO](state,userInfo){
+    state.userInfo=userInfo;
   }
 }
 

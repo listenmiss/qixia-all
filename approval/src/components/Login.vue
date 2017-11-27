@@ -93,17 +93,26 @@
         var that = this;
 
 
-        this.$axios.post(url,params)
+        this.axios.post(url,params)
           .then(function (response) {
 
             if(response.data.code==1000)
             {
 
 
+
+
               var token = response.data.data.token;
               var refreshToken = response.data.data.refreshToken;
-              that.$store.dispatch("saveToken",token);
-              that.$store.dispatch("saveRefreshToken",refreshToken);
+
+
+              var userInfo = {};
+              userInfo.userName = params.uname;
+
+
+              that.$store.dispatch("saveUserInfo",userInfo);
+              window.sessionStorage.setItem('token',token);
+              window.sessionStorage.setItem('refreshToken',refreshToken);
               that.$router.push({ path: '/main' });
 
             }else {

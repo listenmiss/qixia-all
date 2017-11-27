@@ -16,6 +16,8 @@
     <result column="m_tel" property="m_tel" jdbcType="VARCHAR" />
     <result column="m_addr" property="m_addr" jdbcType="VARCHAR" />
     <result column="m_state" property="m_state" jdbcType="TINYINT" />
+      <result column="m_docs" property="m_docs" jdbcType="BLOB" />
+    
   </resultMap>
   
    <resultMap id="userResultMap" type="User">  
@@ -37,7 +39,7 @@
     <result column="m_addr" property="m_addr" jdbcType="VARCHAR" />
     <result column="m_state" property="m_state" jdbcType="TINYINT" />
     
-    
+    <result column="m_docs" property="m_docs" jdbcType="BLOB" />
     <association property="user" resultMap="userResultMap"/>
   </resultMap>
    
@@ -49,9 +51,17 @@
 	u.nickname
 	FROM
 		approvel_matter_stats AS s
-	LEFT JOIN approvel_user AS u ON s.userid = u.id
+	LEFT JOIN approvel_user AS u ON s.userid = u.licenceNumber
 	  where s.insert_start=#{insert_start}
+	
   </select>
    
+    <!-- 通过Id查找 -->
+  <select id="findMatterStatsById" parameterType="Long" resultMap="BaseResultMap">
+select * from approvel_matter_stats where idx =#{id}
+  </select>
   
+    <update id="updateMatterStatsInsertStart">
+        UPDATE approvel_matter_stats SET insert_start=#{insert_start} WHERE idx=#{idx}
+    </update>
 </mapper>
