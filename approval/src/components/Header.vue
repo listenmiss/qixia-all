@@ -11,6 +11,10 @@
           <span style="margin-left: 10px;margin-right: 10px;font-weight:bold;color:#2db7fe">退出</span>
         </router-link>
       </div>
+
+   
+
+
     </div>
 
 
@@ -24,7 +28,13 @@
       return {
 
       }
+    },methods: {
+
+
     }
+
+
+
   }
 </script>
 

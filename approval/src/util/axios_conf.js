@@ -2,10 +2,11 @@ import axios from 'axios'
 import store from '../store/index.js'
 import * as types from '../store/types'
 import router from '../router/index.js'
-
+ import conf from './conf.js'
 // axios 配置
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = 'http://localhost:80';
+axios.defaults.baseURL = conf.SERVERADDRESS;
+// axios.defaults.baseURL = 'http://localhost:8080';
 
 // http request 拦截器
 axios.interceptors.request.use(

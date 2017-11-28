@@ -77,6 +77,7 @@
       }
     },	methods: {
       changeItem(){
+      
         let itemId=this.curStats.itemid;
         var url ="/approval-api/item/findItemById";
         var params={};

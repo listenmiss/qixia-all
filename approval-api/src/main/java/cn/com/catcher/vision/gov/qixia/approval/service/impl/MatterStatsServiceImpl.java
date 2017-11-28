@@ -23,6 +23,8 @@ public class MatterStatsServiceImpl implements MatterStatsService {
 		logger.info("findMatterStatsByInsertStart:" + insert_start);
         return this.matterStatsDao.findMatterStatsByInsertStart(insert_start);
 	}
+	
+	
 	@Override
 	public String findMatterStatsDocs(int id) {
 
@@ -40,30 +42,18 @@ public class MatterStatsServiceImpl implements MatterStatsService {
 				{
 					
 						String str = new String(bdoc,"utf-8");
-						String[] ss = str.split("\n");
-						if(ss!=null&&ss.length>0)
-						{
-							for(int i=0;i<ss.length;i++)
-							{
-								
-								String itemStr = ss[i];
-								
-								if(itemStr!=null &&!"".equals(itemStr))
-								{
-									String[] itemStrArray = itemStr.split("¡£");
-									if(itemStrArray!=null && itemStrArray.length>1)
-									{
-										String doc = itemStrArray[1];
-										result.add(doc);
-									}
-							
-								}
-								
-								
-							}
-						}
 						
-					
+					  if(str!=null && !"".equals(str))
+					  {
+						  String[] ss = str.split("##");
+							if(ss!=null&&ss.length>0)
+							{
+								for(int i=0;i<ss.length;i++)
+								{
+									result.add(ss[i]);
+								}
+							}
+					  }
 				}
 			}
 			 return result.toString();
@@ -73,6 +63,60 @@ public class MatterStatsServiceImpl implements MatterStatsService {
 			return null;
 		}
 	}
+	
+	
+	
+	
+//	@Override
+//	public String findMatterStatsDocs(int id) {
+//
+//		JSONArray result = new JSONArray();
+//		try {
+//			
+//			
+//			
+//			Long lId = new Long(id);
+//			MatterStats m=this.matterStatsDao.findMatterStatsById((lId));
+//			if(m!=null)
+//			{
+//				byte[] bdoc = m.getM_docs();
+//				if(bdoc!=null)
+//				{
+//					
+//						String str = new String(bdoc,"utf-8");
+//						String[] ss = str.split("\n");
+//						if(ss!=null&&ss.length>0)
+//						{
+//							for(int i=0;i<ss.length;i++)
+//							{
+//								
+//								String itemStr = ss[i];
+//								
+//								if(itemStr!=null &&!"".equals(itemStr))
+//								{
+//									String[] itemStrArray = itemStr.split("ï¿½ï¿½");
+//									if(itemStrArray!=null && itemStrArray.length>1)
+//									{
+//										String doc = itemStrArray[1];
+//										result.add(doc);
+//									}
+//							
+//								}
+//								
+//								
+//							}
+//						}
+//						
+//					
+//				}
+//			}
+//			 return result.toString();
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 	@Override
 	public boolean updateMatterStatsInsertStart(int id, int status) {
 		MatterStats m = new MatterStats();

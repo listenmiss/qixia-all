@@ -43,6 +43,7 @@ public class TokenValidateInterceptor implements HandlerInterceptor {
         }
 		
 		String tokenStr = authorizationHeader.substring("Bearer".length()).trim();
+		logger.info("token####"+tokenStr);
 //    	String tokenStr = request.getParameter("token");
 		if (tokenStr == null || tokenStr.equals("")) {
 			PrintWriter printWriter = response.getWriter();
@@ -54,6 +55,8 @@ public class TokenValidateInterceptor implements HandlerInterceptor {
 		// 验证JWT的签名，返回CheckResult对象
 		CheckResult checkResult = JwtUtil.validateJWT(tokenStr);
 		if (checkResult.isSuccess()) {
+			
+			logger.info("jwt####success");
 			return true;
 		} else {
 			switch (checkResult.getErrCode()) {
@@ -63,13 +66,15 @@ public class TokenValidateInterceptor implements HandlerInterceptor {
 				printWriter.print(ResponseUtil.loginExpire());
 				printWriter.flush();
 				printWriter.close();
+				logger.info("jwt####签名过期，返回过期提示码");
 				break;
-			// 签名验证不�?�过
+			// 签名验证不通过
 			case Constant.JWT_ERRCODE_FAIL:
 				PrintWriter printWriter2 = response.getWriter();
 				printWriter2.print(ResponseUtil.noAuth());
 				printWriter2.flush();
 				printWriter2.close();
+				logger.info("jwt####签名验证不通过");
 				break;
 			default:
 				break;

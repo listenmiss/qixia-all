@@ -30,8 +30,12 @@ public class MatterStatsController {
 	    private MatterStatsService matterStatsService;
 	    @RequestMapping(path = {"findMatterStatsByInsertStart"}, method = {RequestMethod.GET})
 	    public List<MatterStats> findMatterStatsByInsertStart(HttpSession session,@RequestParam int insert_start){
+	    	
+	    	logger.info("findMatterStatsByInsertStart####findMatterStatsByInsertStart");
 	    	List<MatterStats> matterStatsList = this.matterStatsService.findMatterStatsByInsertStart(insert_start);
-	        return matterStatsList;
+	    	logger.info("findMatterStatsByInsertStart####Over");
+	    	logger.info(matterStatsList.toString());
+	    	return matterStatsList;
 	    }
 	    
 	    @RequestMapping(path = {"findMatterStatsDocs"}, method = {RequestMethod.GET})

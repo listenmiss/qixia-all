@@ -35,6 +35,7 @@
 	    <mvc:interceptor>
 	      <mvc:mapping path="/**"/>
 	      <mvc:exclude-mapping path="/authenticate/**" />
+	      <mvc:exclude-mapping path="/fileTransfer/**" />
 	      <bean class="cn.com.catcher.vision.gov.qixia.commons.interceptor.TokenValidateInterceptor"/>
 	    </mvc:interceptor>
 	</mvc:interceptors>

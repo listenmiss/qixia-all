@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="aside_left_title">
-      <h5 style="margin-bottom:0px;"><span style="height:30px;line-height: 50px;font-weight:bold;color:white">掌上社区业务扭转</span>
+      <h5 style="margin-bottom:0px;"><span style="height:30px;line-height: 50px;font-weight:bold;color:white">掌上社区业务流转</span>
       </h5>
     </div>
     <div class="aside_left_menu" v-bind:style="{ height: screenHeight-180 + 'px' }">
 
-      <ul style="width:100%;padding:0px;" v-for="(item,index) in customers">
+      <ul style="width:100%;padding:0px;" v-for="(item,index) in allStats">
         <li class="aside_left_li_normal"  v-bind:class="{ aside_left_li_active: selectedIndex === index }" @click="changeItem(index,item)"><span style="font-size:14px;">{{item.user.nickname}}</span></li>
         <!--<li class="aside_left_li_normal"><span style="font-size:14px;">申请人姓名</span></li>-->
       </ul>
@@ -22,14 +22,13 @@
     props: ['screenHeight'],
     data () {
       return {
-        selectedIndex:0,
-        customers:[],
-        selectedCustomer:null
+        selectedIndex:0
       }
     },
     computed:mapGetters([
       'token',
-      'refreshToken'
+      'refreshToken',
+      'allStats'
     ]),
     created: function () {
       //  alert(this.token);
@@ -43,17 +42,20 @@
         params: params
       })
         .then(function (response) {
+      
 
-//          if(response.data!=null &&response.data.customers!=null)
+//          if(response.data!=null && response.data.length>0&&response.data.allStats!=null)
 //          {
-            that.customers  = response.data;
-            that.selectedCustomer = that.customers[0];
-            that.$store.dispatch("setCurStats",that.customers[0]);
+              let datas = response.data;
+
+               that.$store.dispatch("setCurStats",datas[0]);
+                that.$store.dispatch("setAllStats",datas);
 //          }
 
           console.log(response.data);
         })
         .catch(function (error) {
+   
 //          that.$message({
 //            message: '用户名或密码错误，请重新输入！',
 //            type: 'warning'
@@ -61,7 +63,6 @@
         });
     },	methods: {
       changeItem(index,item){
-        this.selectedCustomer =item;
         this.selectedIndex = index;
         this.$store.dispatch("setCurStats",item);
       }
