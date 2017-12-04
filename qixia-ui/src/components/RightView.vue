@@ -53,14 +53,14 @@
     line-height: 40px;
   }
   .bjs_chart_div{
-    height:280px;
+    height:310px;
     border:1px solid rgba(0,186,255,0.6);
     background:url(../assets/images/bjs_chart_bg.png);
 
     margin-top:10px;
   }
   .bjs_map_div{
-    height:280px;
+    height:310px;
     border:1px solid rgba(0,186,255,0.6);
 
     margin-top:10px;

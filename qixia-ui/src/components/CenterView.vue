@@ -124,7 +124,7 @@
     background-size: 100% 100%;
   }
   .news_div{
-    height:100px;
+    height:130px;
     background: url(../assets/images/news_bg.png);
     background-size: 100% 100%;
     margin-top:18px;

@@ -223,6 +223,7 @@
   .left_ju_container{
     border:1px solid rgba(0,186,255,0.6);
     background:url(../assets/images/ju_bg.png);
+	 background-size: 100% 100%;
     padding-top:0;
     padding-bottom:0;
 
@@ -241,6 +242,7 @@
     /*position: absolute;*/
     /*top: 50%;*/
     margin-top:50px;
+	margin-bottom:50px;
   }
 
 
