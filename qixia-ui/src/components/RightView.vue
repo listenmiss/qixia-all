@@ -11,6 +11,7 @@
       </div>
 
       <div class="bjs_scatter_div" id="bjs_scatter_div">
+        <div id="tt" style="width:400px;height:300px"></div>
       </div>
     </el-col>
 
@@ -131,7 +132,8 @@
         myChart.setOption(option);
       },
       initScatterChart() {
-        var myChart = this.$echarts.init(document.getElementById('bjs_scatter_div'));
+        var myChart = this.$echarts.init(document.getElementById('tt'));
+
         var data = [
           {name: '海门', value: 9},
           {name: '鄂尔多斯', value: 12},
@@ -531,7 +533,7 @@
           return res;
         };
 
-        option = {
+       var option = {
           title: {
             text: '全国主要城市空气质量 - 百度地图',
             subtext: 'data from PM25.in',
@@ -702,8 +704,7 @@
               zlevel: 1
             }
           ]
-        }
-
+        };
         myChart.setOption(option);
 
 
@@ -746,7 +747,6 @@
   .bjs_scatter_div {
     height: 310px;
     border: 1px solid rgba(0, 186, 255, 0.6);
-
     margin-top: 10px;
   }
 </style>
