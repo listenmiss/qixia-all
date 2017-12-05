@@ -13,9 +13,9 @@ import axios from './util/axios_conf'
 
 import * as custom from './filters/customFilters'
 
+import echarts from 'echarts'
 
-
-
+Vue.prototype.$echarts = echarts
 
 
 //自定义过滤器

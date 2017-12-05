@@ -1,5 +1,5 @@
 <template>
-  <div class="mainview" v-bind:style="{ height: screenHeight-10 + 'px' }">
+  <div class="mainview" >
 
     <el-row>
       <el-col :xs="24" :sm="24" >
@@ -46,6 +46,7 @@
     name: 'Main',
     data() {
 //alert($(window).height()-230);
+
       return {
         screenHeight:$(window).height()
 
@@ -59,6 +60,7 @@
     }  , mounted() {
       const that = this
       window.onresize = () => {
+
         return (() => {
           that.screenHeight =$(window).height()
         })()
