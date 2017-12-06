@@ -58,7 +58,7 @@
    
     <!-- 通过Id查找 -->
   <select id="findMatterStatsById" parameterType="Long" resultMap="BaseResultMap">
-select * from approvel_matter_stats where idx =#{id}
+     select * from approvel_matter_stats where idx =#{id}
   </select>
   
     <update id="updateMatterStatsInsertStart">

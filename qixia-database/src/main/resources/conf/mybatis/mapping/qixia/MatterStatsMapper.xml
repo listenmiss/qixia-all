@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间: 对应接口的包名+接口名 -->
+<mapper namespace="cn.com.catcher.vision.gov.qixia.dao.MatterStatsDao">
+  <resultMap id="BaseResultMap" type="MatterStats" >
+    <result column="idx" property="idx" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />    
+    <result column="departid" property="departid" jdbcType="TINYINT" />
+    <result column="itemid" property="itemid" jdbcType="INTEGER" />
+    <result column="matterid" property="matterid" jdbcType="BIGINT" />
+    <result column="m_sort" property="m_sort" jdbcType="TINYINT" />
+    <result column="m_name" property="m_name" jdbcType="VARCHAR" />
+    <result column="m_cer_nno" property="m_cer_nno" jdbcType="VARCHAR" />
+    <result column="m_dname" property="m_dname" jdbcType="VARCHAR" />
+    <result column="m_tel" property="m_tel" jdbcType="VARCHAR" />
+    <result column="m_addr" property="m_addr" jdbcType="VARCHAR" />
+    <result column="m_state" property="m_state" jdbcType="TINYINT" />  
+    <result column="request_time" property="request_time" jdbcType="TIMESTAMP" />
+    <result column="m_docs" property="m_docs" jdbcType="BLOB" />
+    <result column="managerid" property="managerid" jdbcType="VARCHAR" />
+    <result column="callcount" property="callcount" jdbcType="INTEGER" />
+    <result column="reserve" property="reserve" jdbcType="VARCHAR" />
+    
+    
+  </resultMap>
+  
+
+
+   
+    <!-- 通过Id查找 -->
+  <select id="findMatterStatsById" parameterType="Long" resultMap="BaseResultMap">
+    select * from approvel_matter_stats where idx =#{id}
+  </select>
+  
+
+</mapper>

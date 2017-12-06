@@ -12,7 +12,7 @@ import './assets/libs/vendor/jquery-3.2.1.min.js'
 import axios from './util/axios_conf'
 
 import * as custom from './filters/customFilters'
-import 'http://api.map.baidu.com/api?v=2.0&ak=8YfQHhBMdYfxIjypnzsH94cfEz17rsxL'
+// import 'http://api.map.baidu.com/api?v=2.0&ak=8YfQHhBMdYfxIjypnzsH94cfEz17rsxL'
 import echarts from 'echarts'
 
 Vue.prototype.$echarts = echarts

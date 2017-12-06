@@ -737,7 +737,7 @@
   }
 
   .bjs_chart_div {
-    height: 310px;
+    height: 305px;
     border: 1px solid rgba(0, 186, 255, 0.6);
     background: url(../assets/images/bjs_chart_bg.png);
 
@@ -745,7 +745,7 @@
   }
 
   .bjs_scatter_div {
-    height: 310px;
+    height: 305px;
     border: 1px solid rgba(0, 186, 255, 0.6);
     margin-top: 10px;
   }

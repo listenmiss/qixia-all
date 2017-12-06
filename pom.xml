@@ -179,5 +179,6 @@
     <module>approval-database</module>
     <module>approval-api</module>
     <module>qixia-commons</module>
+    <module>stats-api</module>
   </modules>
 </project>
