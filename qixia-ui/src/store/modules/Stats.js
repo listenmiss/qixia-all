@@ -4,72 +4,65 @@
 
 import types from '../types.js'
 
+
+
 const state={
-  curStats:{},
-  allStats:[]
+  jdepIds:"11,12,13,14,15,16,17,32,33,4,28,31,1,3,9,5",
+  todayFinishMatters:[],
+  finishMattersCount:{
+    todayCount:0,
+    weekCount:0,
+    monthCount:0,
+    yearCount:0,
+    allCount:0
+  },
+  lastMatterStats:[]
+
 }
 
 var getters={
-  curStats(state){
-    return state.curStats;
+  jdepIds(state){
+    return state.jdepIds;
   },
-    allStats(state){
-    return state.allStats;
+  todayFinishMatters(state){
+    return state.todayFinishMatters;
+  },
+  finishMattersCount(state){
+    return state.finishMattersCount;
+  },
+  lastMatterStats(state){
+    return state.lastMatterStats;
   }
 }
 
 const actions = {
 
-  setCurStats({commit,state},curStats){
 
-    commit(types.SETCURSTATS,curStats);
+  updateTodayFinishMatters({commit,state},todayFinishMatters){
 
-  },
-    setAllStats({commit,state},allStats){
+    commit(types.UPDATETODAYFINISHMATTERS,todayFinishMatters);
 
-    commit(types.SETALLSTATS,allStats);
+  },updateFinishMattersCount({commit,state},obj){
 
-  },
-   handleStats({commit,state},idx){
-    let newDatas =[];
+    commit(types.UPDATEFINISHMATTERSCOUNT,obj);
 
-    if(state.allStats!=null && state.allStats.length>0)
-    {
-      for(let i=0;i<state.allStats.length;i++)
-      {
-        if(state.allStats[i].idx !=idx)
-        {
-          newDatas.push(state.allStats[i]);
-        }else
-        {
-          //设置当前处理事项
-          if(i==state.allStats.length-1)//如果是最后一个
-          {
-            // commit(types.SETCURSTATS,state.allStats[i+1]);
-            
-            commit(types.SETCURSTATS,{});
+  },updateLastMatterStats({commit,state},arr){
 
-          }else{
-           
-              commit(types.SETCURSTATS,state.allStats[i+1]);
-
-          }
-          
-        }
-      }
-       commit(types.SETALLSTATS,newDatas);
-    }
+    commit(types.UPDATELASTMATTERSTATS,arr);
 
   }
 
 }
 
 const mutations={
-  [types.SETCURSTATS](state,curStats){
-    state.curStats=curStats;
+  [types.UPDATETODAYFINISHMATTERS](state,todayFinishMatters){
+    state.todayFinishMatters=todayFinishMatters;
   },
-    [types.SETALLSTATS](state,allStats){
-    state.allStats=allStats;
+  [types.UPDATEFINISHMATTERSCOUNT](state,obj){
+    state.finishMattersCount=obj;
+  },
+  [types.UPDATELASTMATTERSTATS](state,arr){
+    state.lastMatterStats=arr;
   }
 }
 

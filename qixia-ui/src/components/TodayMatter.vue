@@ -12,162 +12,20 @@
         <!-- <div class="left_ju_wrap"  v-bind:style="{ 'margin-top': (screenHeight-740)/2 + 'px' }">-->
         <div class="left_ju_wrap"  >
           <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #61d13e;">
-                <span class="ju_title_txt">市场监管局</span>
+            <el-col :xs="24" :sm="12"   v-for="(item,index) in todayFinishMatters">
+              <div class="ju_info_div" v-bind:class="{ 'c1': index%4==0, 'c2': index%4==1, 'c3': index%4==2, 'c4': index%4==3 }">
+                <span class="ju_title_txt">{{item.depart_name}}</span>
 
-                <span class="ju_value">280</span>
+                <span class="ju_value">{{item.stats_count}}</span>
               </div>
 
             </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #01feff;">
-                <span class="ju_title_txt">住建局</span>
 
-                <span class="ju_value">145</span>
-              </div>
-            </el-col>
-          </el-row>
-
-
-
-          <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #ff5c0d;">
-                <span class="ju_title_txt">人社局</span>
-
-                <span class="ju_value">150</span>
-              </div>
-
-            </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #0183e8;">
-                <span class="ju_title_txt">环保局</span>
-
-                <span class="ju_value">240</span>
-              </div>
-            </el-col>
-          </el-row>
-
-
-
-          <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #61d13e;">
-                <span class="ju_title_txt">财政局</span>
-
-                <span class="ju_value">254</span>
-              </div>
-
-            </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #01feff;">
-                <span class="ju_title_txt">安监局</span>
-
-                <span class="ju_value">280</span>
-              </div>
-            </el-col>
-          </el-row>
-
-
-
-          <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #ff5c0d;">
-                <span class="ju_title_txt">发改局</span>
-
-                <span class="ju_value">123</span>
-              </div>
-
-            </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #0283e7;">
-                <span class="ju_title_txt">农业局</span>
-
-                <span class="ju_value">212</span>
-              </div>
-            </el-col>
-          </el-row>
-
-
-
-          <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #61d13e;">
-                <span class="ju_title_txt">教育局</span>
-
-                <span class="ju_value">50</span>
-              </div>
-
-            </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #01feff;">
-                <span class="ju_title_txt">编办</span>
-
-                <span class="ju_value">50</span>
-              </div>
-            </el-col>
           </el-row>
 
 
 
 
-          <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #ff5c0d;">
-                <span class="ju_title_txt">民宗局</span>
-
-                <span class="ju_value">280</span>
-              </div>
-
-            </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #0283e7;">
-                <span class="ju_title_txt">体育局</span>
-
-                <span class="ju_value">15</span>
-              </div>
-            </el-col>
-          </el-row>
-
-
-
-          <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #61d13e;">
-                <span class="ju_title_txt">物价局</span>
-
-                <span class="ju_value">280</span>
-              </div>
-
-            </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #01feff;">
-                <span class="ju_title_txt">交运局</span>
-
-                <span class="ju_value">120</span>
-              </div>
-            </el-col>
-          </el-row>
-
-
-          <el-row :gutter="42">
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #ff5c0d;">
-                <span class="ju_title_txt">水务局</span>
-
-                <span class="ju_value">120</span>
-              </div>
-
-            </el-col>
-            <el-col :xs="24" :sm="12" >
-              <div class="ju_info_div" style="border-left:8px solid #0283e7;">
-                <span class="ju_title_txt">文化旅游局</span>
-
-                <span class="ju_value">112</span>
-              </div>
-            </el-col>
-          </el-row>
         </div>
 
 
@@ -179,6 +37,7 @@
 
 
 <script>
+  import {mapState,mapGetters,mapActions} from 'vuex'
   export default {
     name: 'TodayMatter',
     props: ['screenHeight'],
@@ -186,9 +45,70 @@
       return {
 
       }
+    },
+    computed: {
+      ...mapGetters([
+        'jdepIds',
+        'todayFinishMatters'
+      ])
+    },
+  created: function () {
+
+  },
+    mounted() {
+      var that = this;
+      let p1 =  this.initDatas();
+      p1.then(function (response) {
+
+        if(response.data!=null)
+        {
+          for(let i=0;i<response.data.length;i++)
+          {
+            response.data[i].stats_count= 0;
+          }
+        }
+        that.$store.dispatch("updateTodayFinishMatters",response.data);
+        that.refreshDatas();
+
+      })
+        .catch(function (error) {
+          console.log(error);
+        });
+      this.refreshDatas();
+      setInterval(this.refreshDatas, 2000);
     },methods: {
+      initDatas(){
+        var url ="/stats-api/statsApi/findAllDepartmentsByIds";
+        var params={};
+        params.jdepIds=this.jdepIds
+
+        let p =this.axios.get(url,{
+          params: params
+        });
+        return p;
+
+      },
+      refreshDatas(){
+
+        var url ="/stats-api/statsApi/findAllDepartmentsMatterStatsToday";
+        var params={};
+
+        params.dateType=1;
+        params.state=5;
+        params.jdepIds=this.jdepIds;
+        var that = this;
+        this.axios.get(url,{
+          params: params
+        }).then(function (response) {
+          that.$store.dispatch("updateTodayFinishMatters",response.data);
 
 
+        })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+      }
     }
 
 
@@ -242,7 +162,7 @@
     /*position: absolute;*/
     /*top: 50%;*/
     margin-top:50px;
-	margin-bottom:50px;
+	margin-bottom:58px;
   }
 
 
@@ -271,5 +191,19 @@
     /*margin-left:192px;*/
     float: right;
 
+  }
+
+
+  .c1{
+    border-left:8px solid #61d13e;
+  }
+  .c2{
+    border-left:8px solid #01feff;
+  }
+  .c3{
+    border-left:8px solid #ff5c0d;
+  }
+  .c4{
+    border-left:8px solid #0183e8;
   }
 </style>

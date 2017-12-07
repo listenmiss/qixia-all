@@ -15,6 +15,11 @@ import * as custom from './filters/customFilters'
 // import 'http://api.map.baidu.com/api?v=2.0&ak=8YfQHhBMdYfxIjypnzsH94cfEz17rsxL'
 import echarts from 'echarts'
 
+import  'echarts/extension/bmap/bmap'
+
+
+
+
 Vue.prototype.$echarts = echarts
 
 

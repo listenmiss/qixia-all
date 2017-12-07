@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    name: 'Header',
+    name: 'Headerbar',
     data () {
       return {
 

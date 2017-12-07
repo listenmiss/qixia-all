@@ -3,7 +3,7 @@
 
     <el-row>
       <el-col :xs="24" :sm="24" >
-        <Header></Header>
+        <Headerbar></Headerbar>
       </el-col>
     </el-row>
     <el-row>
@@ -37,27 +37,35 @@
 
 <script>
 
-  import Header from './Header'
+  import Headerbar from './Headerbar'
   import TodayMatter from './TodayMatter.vue'
   import CenterView from './CenterView.vue'
   import RightView from './RightView.vue'
+  import {mapState,mapGetters,mapActions} from 'vuex'
 
   export default {
     name: 'Main',
     data() {
-//alert($(window).height()-230);
-
       return {
         screenHeight:$(window).height()
 
       }
     },
     components: {
-      Header,
+      Headerbar,
       TodayMatter,
       CenterView,
       RightView
-    }  , mounted() {
+    },
+    computed: {
+      ...mapGetters([
+        'jdepIds'
+      ])
+    },
+    created: function () {
+
+    } ,
+    mounted() {
       const that = this
       window.onresize = () => {
 
@@ -65,6 +73,8 @@
           that.screenHeight =$(window).height()
         })()
       }
+    },methods: {
+
     }
   }
 </script>

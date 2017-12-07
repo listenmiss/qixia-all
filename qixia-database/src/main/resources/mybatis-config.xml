@@ -13,7 +13,7 @@
     </settings>
 
     <typeAliases>
-      
+       <typeAlias alias="User" type="cn.com.catcher.vision.gov.qixia.model.User"/>
       <typeAlias alias="Departments" type="cn.com.catcher.vision.gov.qixia.model.Departments"/>
         <typeAlias alias="MatterStats" type="cn.com.catcher.vision.gov.qixia.model.MatterStats"/>
         

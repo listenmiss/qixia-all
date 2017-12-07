@@ -21,6 +21,8 @@ public class MatterStats {
 	private String managerid;
 	private Integer callcount;
 	private String reserve;
+	
+	private String item_name;
 	public Long getIdx() {
 		return idx;
 	}
@@ -122,6 +124,12 @@ public class MatterStats {
 	}
 	public void setReserve(String reserve) {
 		this.reserve = reserve;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
 	}
 	
 	

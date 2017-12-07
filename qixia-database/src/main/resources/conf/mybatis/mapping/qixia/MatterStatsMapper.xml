@@ -23,6 +23,7 @@
     <result column="callcount" property="callcount" jdbcType="INTEGER" />
     <result column="reserve" property="reserve" jdbcType="VARCHAR" />
     
+     <result column="item_name" property="item_name" jdbcType="VARCHAR" />
     
   </resultMap>
   
@@ -34,5 +35,30 @@
     select * from approvel_matter_stats where idx =#{id}
   </select>
   
+
+  <select id="findLastMatterStats" parameterType="int" resultMap="BaseResultMap">
+   SELECT
+	s.*,
+	item.item_name
+	FROM
+		approvel_matter_stats AS s,
+		approvel_item AS item
+	where s.itemid = item.id
+	ORDER BY
+		idx DESC
+	LIMIT #{count}
+  </select>
+  
+  <select id="findMatterStatsCountByGroup" parameterType="Map"  resultType="int">
+	SELECT
+		count(am.idx)
+	FROM
+		approvel_matter_stats AS am
+	LEFT JOIN approvel_item AS ai ON am.itemid = ai.id
+	LEFT JOIN approvel_manageritem AS m ON ai.id = m.itemid
+	WHERE
+		am.m_state = #{state}
+	AND m.groupid = #{groupid}
+  </select>
 
 </mapper>

@@ -12,7 +12,18 @@
   </resultMap>
   
 
+  <select id="findAllDepartmentsByIds" parameterType="List"  resultMap="BaseResultMap">
+	   SELECT
+		*
+	FROM
+		approvel_depart 
+	
+	where id in        
+	<foreach item="item" index="index" collection="depIds" open="(" separator="," close=")">  
+				 #{item}  
+	</foreach>
 
+  </select>
    
     <!-- 通过Id查找 -->
   <select id="findAllDepartmentsMatterStatsToday" parameterType="Map"  resultMap="BaseResultMap">
@@ -47,6 +58,12 @@
 			'%Y%m'
 		) = DATE_FORMAT(CURDATE(), '%Y%m')
     </if>
+    
+   <if test="dateType == 4">
+         	YEAR(
+				approvel_matter_stats.request_time
+			) = YEAR(NOW())
+    </if>
   </where>
 	) am ON ap.id = am.departid
 	AND am.m_state = #{state}
@@ -55,8 +72,60 @@
 				 #{item}  
 	</foreach>
 	GROUP BY
-		ap.id
+		ap.id	
+		
+	order by field
+     (  
+      ap.id,  
+      <foreach   item="item"   index="index" collection="sortList" separator=","    >  
+        #{item}    
+      </foreach>   
+      )  
   </select>
   
+  
+    <select id="findDepartmentsMatterStatsCount" parameterType="Map"  resultType="int">
+	  SELECT
+	count(idx)
+	FROM
+		approvel_matter_stats
+		where
+		
+	departid IN 
+	<foreach item="item" index="index" collection="depIds" open="(" separator="," close=")">  
+				 #{item}  
+	</foreach>
+	
+    <if test="dateType == 1">
+     AND    	TO_DAYS(
+				request_time
+			) = TO_DAYS(NOW())
+    </if> 
+    <if test="dateType == 2">
+      AND  		YEARWEEK(
+					date_format(
+						request_time,
+						'%Y-%m-%d'
+					)
+				) = YEARWEEK(now())
+    </if>
+    <if test="dateType == 3">
+   AND    DATE_FORMAT(
+			request_time,
+			'%Y%m'
+		) = DATE_FORMAT(CURDATE(), '%Y%m')
+    </if>
+    
+       <if test="dateType == 4">
+       AND  	YEAR(
+				request_time
+			) = YEAR(NOW())
+    </if>
+    	AND m_state = #{state}
+	 
+
+		
+
+  </select>
 
 </mapper>
