@@ -14,4 +14,6 @@ public interface MatterStatsDao {
 	
 	
 	int findMatterStatsCountByGroup(Map<String, Object> map);
+	
+	int insertMatterStats(MatterStats matterStats);
 }

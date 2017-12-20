@@ -7,6 +7,9 @@
         <dependent-module archiveName="qixia-commons-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/qixia-commons/qixia-commons">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="qixia-database-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/qixia-database/qixia-database">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="sync-client"/>
         <property name="java-output-path" value="/sync-client/target/classes"/>
     </wb-module>

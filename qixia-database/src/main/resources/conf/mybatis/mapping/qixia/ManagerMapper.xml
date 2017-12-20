@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间: 对应接口的包名+接口名 -->
+<mapper namespace="cn.com.catcher.vision.gov.qixia.dao.ManagerDao">
+	<resultMap id="BaseResultMap" type="Manager">
+		<result column="no" property="no" jdbcType="INTEGER" />
+		<result column="managerid" property="managerid" jdbcType="VARCHAR" />
+		<result column="managerpassword" property="managerpassword" jdbcType="VARCHAR" />
+		<result column="managernickname" property="managernickname" jdbcType="VARCHAR" />
+		<result column="managerphone" property="managerphone" jdbcType="VARCHAR" />
+		<result column="realid" property="realid" jdbcType="VARCHAR" />
+		
+		<result column="managerlevel" property="managerlevel"  />
+		
+		<result column="managernum" property="managernum" jdbcType="VARCHAR" />
+		<result column="managerpartname" property="managerpartname" jdbcType="VARCHAR" />
+		<result column="managerdepartid" property="managerdepartid" jdbcType="INTEGER" />
+		<result column="managerliepass" property="managerliepass" jdbcType="VARCHAR" />
+		
+
+	</resultMap>
+
+ 	<insert id="insertManager" parameterType="Manager">
+		insert into approvel_manager
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			no,
+			managerid,
+			managerpassword,
+			managernickname,
+			managerphone,
+			realid,
+			<if test="managerlevel != null">
+			managerlevel,
+			</if>
+			managernum,
+			managerpartname,
+			managerdepartid,
+			managerliepass
+			
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{no},
+			#{managerid},
+			#{managerpassword},
+			#{managernickname},
+			#{managerphone},
+			#{realid},
+			<if test="managerlevel != null">
+			#{managerlevel},
+			</if>
+			#{managernum},
+			#{managerpartname},
+			#{managerdepartid},
+			#{managerliepass}
+		</trim>
+	</insert> 
+
+
+	<!-- 通过Id查找 -->
+	<select id="findManagerById" parameterType="int" resultMap="BaseResultMap">
+		select * from approvel_manager where no =#{id}
+	</select>
+
+
+</mapper>

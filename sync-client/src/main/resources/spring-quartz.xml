@@ -9,14 +9,17 @@
     <context:component-scan base-package="cn.com.catcher.vision.gov.qixia.sync.client.tasks" />  
    
    
+   <bean id="jobFactory" class="cn.com.catcher.vision.gov.qixia.sync.client.util.MyJobFactory"></bean>
     <!-- Scheduler factory bean to glue together jobDetails and triggers to Configure Quartz Scheduler -->  
-    <bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+    <bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="true">  
 
-   
+   <property name="jobFactory" ref="jobFactory"></property>
         <property name="triggers">  
             <list>  
               
                 <ref bean="syncLogsCronTrigger" /> 
+                <ref bean="syncDatasCronTrigger" /> 
+                
                  
             </list>  
         </property>  
@@ -47,6 +50,16 @@
     </bean>  
    
    
+    <bean name="syncDatasJobJobDetail"    class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="cn.com.catcher.vision.gov.qixia.sync.client.tasks.SyncDatasJob" />  
+        <property name="durability" value="true" />  
+    </bean>  
 
+
+    <bean id="syncDatasCronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="syncDatasJobJobDetail" />  
+       <property name="cronExpression" value="0/1 * * ? * * *" />
+       
+    </bean>  
    
 </beans>  

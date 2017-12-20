@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间: 对应接口的包名+接口名 -->
+<mapper namespace="cn.com.catcher.vision.gov.qixia.dao.ManagerItemDao">
+	<resultMap id="BaseResultMap" type="ManagerItem">
+		<result column="no" property="no" jdbcType="INTEGER" />
+		<result column="managerid" property="managerid" jdbcType="VARCHAR" />
+		<result column="itemid" property="itemid" jdbcType="INTEGER" />
+		<result column="item_name" property="item_name" jdbcType="VARCHAR" />
+		<result column="groupid" property="groupid" jdbcType="INTEGER" />
+		
+		
+
+	</resultMap>
+
+ 	<insert id="insertManagerItem" parameterType="ManagerItem">
+		insert into approvel_manageritem
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			no,
+			managerid,
+			itemid,
+			item_name,
+			groupid
+			
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{no},
+			#{managerid},
+			#{itemid},
+			#{item_name},
+			#{groupid}
+		</trim>
+	</insert> 
+
+
+	<!-- 通过Id查找 -->
+	<select id="findManagerItemById" parameterType="int" resultMap="BaseResultMap">
+		select * from approvel_manageritem where no =#{id}
+	</select>
+
+
+</mapper>

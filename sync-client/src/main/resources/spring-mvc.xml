@@ -26,20 +26,20 @@
         allow-credentials="true" />
 </mvc:cors> -->
 
-  <!--   <mvc:interceptors>
+    <mvc:interceptors>
     	<mvc:interceptor>
 	      <mvc:mapping path="/**"/>
 	      <bean class="cn.com.catcher.vision.gov.qixia.commons.interceptor.CorsInterceptor"/>
 	    </mvc:interceptor>
 	    
-	    <mvc:interceptor>
+	    <!-- <mvc:interceptor>
 	      <mvc:mapping path="/**"/>
 	      <mvc:exclude-mapping path="/authenticate/**" />
 	      <mvc:exclude-mapping path="/fileTransfer/**" />
 	      <bean class="cn.com.catcher.vision.gov.qixia.commons.interceptor.TokenValidateInterceptor"/>
-	    </mvc:interceptor>
+	    </mvc:interceptor> -->
 	</mvc:interceptors>
- -->
+
     <!-- 配置 viewResolver -->
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">

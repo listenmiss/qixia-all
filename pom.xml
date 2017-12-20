@@ -153,7 +153,7 @@
             <version>1.7.21</version>
         </dependency>
         <!-- logback : slf4j + logback -->
-        <dependency>
+<!--         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
@@ -162,7 +162,7 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
-        </dependency>
+        </dependency> -->
         <!-- junit test -->
         <dependency>
             <groupId>junit</groupId>

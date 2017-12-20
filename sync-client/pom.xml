@@ -15,6 +15,7 @@
      <spring.version>4.3.12.RELEASE</spring.version>
       <quartz.version>2.2.2</quartz.version>  
       <qixia-commons.version>0.0.1-SNAPSHOT</qixia-commons.version>
+      <qixia-database.version>0.0.1-SNAPSHOT</qixia-database.version>
     </properties>
     
   <name>sync-client Maven Webapp</name>
@@ -36,6 +37,13 @@
     	<artifactId>qixia-commons</artifactId>
     	<version>${qixia-commons.version}</version>
     </dependency>
+    
+    <dependency>
+    	<groupId>cn.com.catcher.vision.qixia</groupId>
+    	<artifactId>qixia-database</artifactId>
+    	<version>${qixia-database.version}</version>
+    </dependency>
+    
   </dependencies>
   <build>
     <finalName>sync-client</finalName>

@@ -16,7 +16,7 @@
    <!--  <context:property-placeholder location="classpath:jdbc.properties" />  -->
      
     <!-- 自动扫描组件包 -->
-    <context:component-scan base-package="cn.com.catcher.vision.gov.qixia.sync.client.listener" />
+    <context:component-scan base-package="cn.com.catcher.vision.gov.qixia.sync.client.listener,cn.com.catcher.vision.gov.qixia.sync.client.service" />
      
      <!-- 引入配置文件 -->
    <bean id="propertyUtil"
@@ -24,7 +24,8 @@
         <property name="ignoreResourceNotFound" value="true"/>
         <property name="locations">
             <list>
-              
+              	<value>classpath:log4j.properties</value> 
+		        <value>classpath:jdbc.properties</value>  
                 <value>classpath:config.properties</value>
               
             </list>

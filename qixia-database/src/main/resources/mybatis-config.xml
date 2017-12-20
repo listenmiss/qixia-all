@@ -16,6 +16,11 @@
        <typeAlias alias="User" type="cn.com.catcher.vision.gov.qixia.model.User"/>
       <typeAlias alias="Departments" type="cn.com.catcher.vision.gov.qixia.model.Departments"/>
         <typeAlias alias="MatterStats" type="cn.com.catcher.vision.gov.qixia.model.MatterStats"/>
+        <typeAlias alias="Manager" type="cn.com.catcher.vision.gov.qixia.model.Manager"/>
+         <typeAlias alias="ManagerItem" type="cn.com.catcher.vision.gov.qixia.model.ManagerItem"/>
+         <typeAlias alias="Matter" type="cn.com.catcher.vision.gov.qixia.model.Matter"/>
+         <typeAlias alias="SyncTrigger" type="cn.com.catcher.vision.gov.qixia.model.SyncTrigger"/>
+        
         
         
     </typeAliases>

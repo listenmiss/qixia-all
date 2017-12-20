@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 命名空间: 对应接口的包名+接口名 -->
-<mapper namespace="cn.com.catcher.vision.gov.qixia.dao.MatterStatsDao">
-	<resultMap id="BaseResultMap" type="MatterStats">
+<mapper namespace="cn.com.catcher.vision.gov.qixia.dao.MatterDao">
+	<resultMap id="BaseResultMap" type="Matter">
 		<result column="idx" property="idx" jdbcType="BIGINT" />
 		<result column="userid" property="userid" jdbcType="VARCHAR" />
 		<result column="departid" property="departid" jdbcType="TINYINT" />
@@ -27,8 +27,8 @@
 
 	</resultMap>
 
- 	<insert id="insertMatterStats" parameterType="MatterStats">
-		insert into approvel_matter_stats
+ 	<insert id="insertMatter" parameterType="Matter">
+		insert into approvel_matter
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			idx,
 			userid,
@@ -75,35 +75,9 @@
 
 
 	<!-- 通过Id查找 -->
-	<select id="findMatterStatsById" parameterType="Long" resultMap="BaseResultMap">
-		select * from approvel_matter_stats where idx =#{id}
+	<select id="findMatterById" parameterType="Long" resultMap="BaseResultMap">
+		select * from approvel_matter where idx =#{id}
 	</select>
 
-
-	<select id="findLastMatterStats" parameterType="int" resultMap="BaseResultMap">
-		SELECT
-		s.*,
-		item.item_name
-		FROM
-		approvel_matter_stats AS s,
-		approvel_item AS item
-		where s.itemid = item.id
-		ORDER BY
-		idx DESC
-		LIMIT #{count}
-	</select>
-
-	<select id="findMatterStatsCountByGroup" parameterType="Map"
-		resultType="int">
-		SELECT
-		count(am.idx)
-		FROM
-		approvel_matter_stats AS am
-		LEFT JOIN approvel_item AS ai ON am.itemid = ai.id
-		LEFT JOIN approvel_manageritem AS m ON ai.id = m.itemid
-		WHERE
-		am.m_state = #{state}
-		AND m.groupid = #{groupid}
-	</select>
 
 </mapper>

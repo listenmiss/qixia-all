@@ -4,6 +4,70 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 命名空间: 对应接口的包名+接口名 -->
 <mapper namespace="cn.com.catcher.vision.gov.qixia.dao.UserDao">
+
+	<resultMap id="BaseResultMap" type="User">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="licenceNumber" property="licenceNumber" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="userphone" property="userphone" jdbcType="VARCHAR" />
+		<result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+		<result column="clientip" property="clientip" jdbcType="VARCHAR" />
+		<result column="userstate" property="userstate" jdbcType="INTEGER" />
+		<result column="realid" property="realid" jdbcType="VARCHAR" />
+		<result column="usertype" property="usertype" jdbcType="INTEGER" />
+		<result column="validdate" property="validdate" jdbcType="TIMESTAMP" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="signstate" property="signstate" jdbcType="TINYINT" />
+		<result column="liepassword" property="liepassword" jdbcType="VARCHAR" />
+		
+
+	</resultMap>
+	
+		<!-- 通过Id查找 -->
+	<select id="findUserById" parameterType="int" resultMap="BaseResultMap">
+		select * from approvel_user where id =#{id}
+	</select>
+	
+	 	<insert id="insertUser" parameterType="User">
+		insert into approvel_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			licenceNumber,
+			nickname,
+			userphone,
+			userpassword,
+			<if test="clientip != null">
+			clientip,
+			</if>
+			userstate,
+			realid,
+			usertype,
+			validdate,
+			username,
+			signstate,
+			liepassword
+			
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{licenceNumber},
+			#{nickname},
+			#{userphone},
+			#{userpassword},
+			<if test="clientip != null">
+			#{clientip},
+			</if>
+			#{userstate},
+			#{realid},
+			#{usertype},
+			#{validdate},
+			#{username},
+			#{signstate},
+			#{liepassword}
+		</trim>
+	</insert> 
+	
+	
     <!-- 通过Id查找 -->
     <select id="findOnlineUserCount" resultType="int">
         SELECT

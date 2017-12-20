@@ -21,7 +21,7 @@
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring-quartz.xml,classpath:spring-context.xml</param-value>
+        <param-value>classpath:spring-context.xml, classpath:spring-mybatis.xml,classpath:spring-quartz.xml</param-value>
     </context-param>
     
     <!-- Encoding Filter -->
