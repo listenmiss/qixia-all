@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd  
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">  
+   
+    <context:component-scan base-package="cn.com.catcher.vision.gov.qixia.sync.client.tasks" />  
+   
+   
+    <!-- Scheduler factory bean to glue together jobDetails and triggers to Configure Quartz Scheduler -->  
+    <bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+
+   
+        <property name="triggers">  
+            <list>  
+              
+                <ref bean="syncLogsCronTrigger" /> 
+                 
+            </list>  
+        </property>  
+    </bean>  
+   
+   
+
+      
+ 
+    <bean name="syncLogsJobJobDetail"    class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="cn.com.catcher.vision.gov.qixia.sync.client.tasks.SyncLogsJob" />  
+        <property name="durability" value="true" />  
+    </bean>  
+
+
+    <bean id="syncLogsCronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+        <property name="jobDetail" ref="syncLogsJobJobDetail" />  
+        
+                         <!--  每秒钟执行一次 -->
+      <!--   <property name="cronExpression" value="0/1 * * ? * * *" />   -->
+       
+                              <!--   每分钟执行一次 -->
+       <!--  <property name="cronExpression" value="0 0/1 * * * ?" /> -->
+
+        <!--   每日凌晨一点执行一次 -->
+        <property name="cronExpression" value="0 0 1 * * ?" />  
+       
+    </bean>  
+   
+   
+
+   
+</beans>  

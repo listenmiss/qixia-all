@@ -169,6 +169,7 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+
     </dependencies>
    
 
@@ -180,5 +181,7 @@
     <module>approval-api</module>
     <module>qixia-commons</module>
     <module>stats-api</module>
+    <module>sync-client</module>
+    <module>sync-server</module>
   </modules>
 </project>
