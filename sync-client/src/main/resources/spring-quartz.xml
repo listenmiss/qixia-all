@@ -39,13 +39,13 @@
         <property name="jobDetail" ref="syncLogsJobJobDetail" />  
         
                          <!--  每秒钟执行一次 -->
-      <!--   <property name="cronExpression" value="0/1 * * ? * * *" />   -->
+        <property name="cronExpression" value="0/1 * * ? * * *" />  
        
                               <!--   每分钟执行一次 -->
        <!--  <property name="cronExpression" value="0 0/1 * * * ?" /> -->
 
         <!--   每日凌晨一点执行一次 -->
-        <property name="cronExpression" value="0 0 1 * * ?" />  
+        <!-- <property name="cronExpression" value="0 0 1 * * ?" />   -->
        
     </bean>  
    

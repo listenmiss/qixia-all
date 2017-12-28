@@ -32,14 +32,14 @@ public class SyncLogsJob extends QuartzJobBean{
 	
 		c.setTime(date); 
 		int day=c.get(Calendar.DATE); 
-		c.set(Calendar.DATE,day-1); 
-
+//		c.set(Calendar.DATE,day-1); 
+		c.set(Calendar.DATE,day); 
 		String dayBefore=new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()); 
 		
 		String str = logsDir+File.separator+dayBefore+".txt";
 		String preLogsDir = str.replaceAll("\\\\","/");
 		File file=new File(preLogsDir);   
-		if(file.exists())//Èç¹û´æÔÚÔòÐèÒªÍ¬²½
+		if(file.exists())//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÍ¬ï¿½ï¿½
 		{
 			String url = PropertyUtil.getProperty("receiver.url");
 			 HttpConnectionUtil.uploadFile(url+"?dirPath="+preLogsDir+"&prefixPath="+baseDir+"&islog=true",new String[] { preLogsDir });

@@ -1,5 +1,8 @@
 package cn.com.catcher.vision.gov.qixia.sync.client.tasks;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
@@ -19,7 +22,7 @@ public class SyncDatasJob extends QuartzJobBean{
 	   
 	    @Override
 		protected void executeInternal(JobExecutionContext arg0) throws JobExecutionException {
-		
+	    	
 		 apiService.syncDatas();
 		}
 	 

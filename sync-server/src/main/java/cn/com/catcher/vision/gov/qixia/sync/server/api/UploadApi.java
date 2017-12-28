@@ -76,24 +76,24 @@ public class UploadApi {
                     //上传
                     file.transferTo(new File(newDirPath));
                     
-                    if(islog.equals("true"))
-                    {
-                    	Calendar c = Calendar.getInstance(); 
-                		Date date=new Date(); 
-                	
-                		c.setTime(date); 
-//                		int day=c.get(Calendar.DATE); 
-//                		c.set(Calendar.DATE,day-1); 
-
-                		String day=new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()); 
-                		
-                		String ss = logsDir+File.separator+day+".txt";
-                		String preLogsDir = ss.replaceAll("\\\\","/");
-                		File logfile=new File(preLogsDir); 
-                		logfile.createNewFile();
-                		
-                    	logger.info("islog");
-                    }
+//                    if(islog.equals("true"))
+//                    {
+//                    	Calendar c = Calendar.getInstance(); 
+//                		Date date=new Date(); 
+//                	
+//                		c.setTime(date); 
+////                		int day=c.get(Calendar.DATE); 
+////                		c.set(Calendar.DATE,day-1); 
+//
+//                		String day=new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()); 
+//                		
+//                		String ss = logsDir+File.separator+day+".txt";
+//                		String preLogsDir = ss.replaceAll("\\\\","/");
+//                		File logfile=new File(preLogsDir); 
+//                		logfile.createNewFile();
+//                		
+//                    	logger.info("islog");
+//                    }
                     logger.info("receive file success:"+newDirPath);
                 }
                  

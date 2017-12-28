@@ -17,28 +17,27 @@ import java.net.URLConnection;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import cn.com.catcher.vision.gov.qixia.sync.client.tasks.WatchFilePathTask;
+
 /**
- * JavaÔ­ÉúµÄAPI¿ÉÓÃÓÚ·¢ËÍHTTPÇëÇó£¬¼´java.net.URL¡¢java.net.URLConnection£¬ÕâĞ©APIºÜºÃÓÃ¡¢ºÜ³£ÓÃ£¬
- * µ«²»¹»¼ò±ã£»
+ * JavaÔ­ï¿½ï¿½ï¿½ï¿½APIï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½HTTPï¿½ï¿½ï¿½ó£¬¼ï¿½java.net.URLï¿½ï¿½java.net.URLConnectionï¿½ï¿½ï¿½ï¿½Ğ©APIï¿½Üºï¿½ï¿½Ã¡ï¿½ï¿½Ü³ï¿½ï¿½Ã£ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£»
  * 
- * 1.Í¨¹ıÍ³Ò»×ÊÔ´¶¨Î»Æ÷£¨java.net.URL£©»ñÈ¡Á¬½ÓÆ÷£¨java.net.URLConnection£© 2.ÉèÖÃÇëÇóµÄ²ÎÊı 3.·¢ËÍÇëÇó
- * 4.ÒÔÊäÈëÁ÷µÄĞÎÊ½»ñÈ¡·µ»ØÄÚÈİ 5.¹Ø±ÕÊäÈëÁ÷
+ * 1.Í¨ï¿½ï¿½Í³Ò»ï¿½ï¿½Ô´ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½java.net.URLï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½java.net.URLConnectionï¿½ï¿½ 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ 3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * 4.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 5.ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author H__D
  *
  */
 public class HttpConnectionUtil {
-
-
-    /**
-     * ¶àÎÄ¼şÉÏ´«µÄ·½·¨
-     * 
-     * @param actionUrl£ºÉÏ´«µÄÂ·¾¶
-     * @param uploadFilePaths£ºĞèÒªÉÏ´«µÄÎÄ¼şÂ·¾¶£¬Êı×é
-     * @return
-     */
+	private static final Logger logger = LoggerFactory.getLogger(HttpConnectionUtil.class);
     @SuppressWarnings("finally")
-    public synchronized static String uploadFile(String actionUrl, String[] uploadFilePaths) {
+    public synchronized static String uploadFile(String urlpath, String[] uploadFilePaths) {
+    	
+    	String actionUrl = urlpath.replaceAll("\\\\","/");
         String end = "\r\n";
         String twoHyphens = "--";
         String boundary = "*****";
@@ -51,29 +50,29 @@ public class HttpConnectionUtil {
         String tempLine = null;
 
         try {
-            // Í³Ò»×ÊÔ´
+            // Í³Ò»ï¿½ï¿½Ô´
             URL url = new URL(actionUrl);
-            // Á¬½ÓÀàµÄ¸¸Àà£¬³éÏóÀà
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             URLConnection urlConnection = url.openConnection();
-            // httpµÄÁ¬½ÓÀà
+            // httpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 
-            // ÉèÖÃÊÇ·ñ´ÓhttpUrlConnection¶ÁÈë£¬Ä¬ÈÏÇé¿öÏÂÊÇtrue;
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½httpUrlConnectionï¿½ï¿½ï¿½ë£¬Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½true;
             httpURLConnection.setDoInput(true);
-            // ÉèÖÃÊÇ·ñÏòhttpUrlConnectionÊä³ö
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½httpUrlConnectionï¿½ï¿½ï¿½
             httpURLConnection.setDoOutput(true);
-            // Post ÇëÇó²»ÄÜÊ¹ÓÃ»º´æ
+            // Post ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã»ï¿½ï¿½ï¿½
             httpURLConnection.setUseCaches(false);
-            // Éè¶¨ÇëÇóµÄ·½·¨£¬Ä¬ÈÏÊÇGET
+            // ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½GET
             httpURLConnection.setRequestMethod("POST");
-            // ÉèÖÃ×Ö·û±àÂëÁ¬½Ó²ÎÊı
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
             httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
-            // ÉèÖÃ×Ö·û±àÂë
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
             httpURLConnection.setRequestProperty("Charset", "UTF-8");
-            // ÉèÖÃÇëÇóÄÚÈİÀàĞÍ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 
-            // ÉèÖÃDataOutputStream
+            // ï¿½ï¿½ï¿½ï¿½DataOutputStream
             ds = new DataOutputStream(httpURLConnection.getOutputStream());
             for (int i = 0; i < uploadFilePaths.length; i++) {
                 String uploadFile = uploadFilePaths[i];
@@ -115,7 +114,7 @@ public class HttpConnectionUtil {
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+        	logger.error(e.getMessage(),e);
         } finally {
             if (ds != null) {
                 try {
@@ -130,7 +129,7 @@ public class HttpConnectionUtil {
                     reader.close();
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+                	logger.error(e.getMessage(),e);
                 }
             }
             if (inputStreamReader != null) {
@@ -138,7 +137,7 @@ public class HttpConnectionUtil {
                     inputStreamReader.close();
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+                	logger.error(e.getMessage(),e);
                 }
             }
             if (inputStream != null) {
@@ -157,7 +156,7 @@ public class HttpConnectionUtil {
 
     public static void main(String[] args) {
 
-        // ÉÏ´«ÎÄ¼ş²âÊÔ
+        // ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
          String str = uploadFile("http://localhost:8080/sync-server/fileTransfer/receiver",new String[] { "D:\\a\\test.txt" });
          System.out.println(str);
 
